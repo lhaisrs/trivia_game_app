@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, UITextFieldDelegate {
+    
     //Label de Pergunta
     @IBOutlet weak var myPergunta: UILabel!
     //TextField de Resposta
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var myPontos: UILabel!
     //Setando o index da coleção
     //Ajudando o tamanho da fonte do título
-    @IBOutlet weak var mySliderFonte: UISlider!
+    //@IBOutlet weak var mySliderFonte: UISlider!
     var index: Int = 0;
     //Criando meu contador de pontos
     var pontos: Int = 4;
@@ -29,22 +29,25 @@ class ViewController: UIViewController {
     //Label do Título
     @IBOutlet weak var myTitle: UILabel!
     //Label de Feedback
-    @IBOutlet weak var myFeedback: UILabel!
+    //@IBOutlet weak var myFeedback: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
+        
+        //Desabilitando meu TextField
+        myResposta.delegate = self
+        
         //Inicializando na Label de Pontos
         myPontos.text = String (pontos);
         
         //Hidden Feedback
-        myFeedback.isHidden = true;
+        //myFeedback.isHidden = true;
         
         //Setando o Título pelo Slider
-        mySliderFonte.value = 12;
-        myTitle.font = myTitle.font.withSize(CGFloat (mySliderFonte.value));
+        //mySliderFonte.value = 12;
+        //myTitle.font = myTitle.font.withSize(CGFloat (mySliderFonte.value));
         
         //Criando as perguntas e respostas
         let questao1 = Questao(pergunta: "Qual o nome da capital de Butão?", resposta: "Thimbu");
@@ -64,6 +67,13 @@ class ViewController: UIViewController {
         //Setando a Label de Pergunta
         myPergunta.text = questoes[index].Pergunta;
     }
+    
+    //Analisando o TextField
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
     
     //Enviar respostas
     @IBAction func EnviarResposta(_ sender: UIButton) {
@@ -92,8 +102,8 @@ class ViewController: UIViewController {
                 pontos = pontos - 1;
             }
             
-                tentativas = tentativas - 1;
-                myPontos.text = String (pontos);
+            tentativas = tentativas - 1;
+            myPontos.text = String (pontos);
             
             
             if(index < 3) {
@@ -109,14 +119,17 @@ class ViewController: UIViewController {
         } else {
             
             //Mostrando o Feedback
-            myFeedback.isHidden = false;
+            //            myFeedback.isHidden = false;
+            //
+            //
+            //            if(pontos > 4) {
+            //                myFeedback.text = "Você ganhou! Parabéns Cara! Você é fera.";
+            //            } else {
+            //                myFeedback.text = "Você perdeu Você é muito burro cara!";
+            //            }
             
+            //Realizando a navegação
             
-            if(pontos > 4) {
-                myFeedback.text = "Você ganhou! Parabéns Cara! Você é fera.";
-            } else {
-                myFeedback.text = "Você perdeu Você é muito burro cara!";
-            }
             
         }
     }
@@ -126,7 +139,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
