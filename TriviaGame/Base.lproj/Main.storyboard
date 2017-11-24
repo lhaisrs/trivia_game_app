@@ -45,7 +45,7 @@
                                 <state key="normal" title="Enviar"/>
                                 <connections>
                                     <action selector="EnviarResposta:" destination="BYZ-38-t0r" eventType="touchUpInside" id="reD-4Q-JIe"/>
-                                    <segue destination="HbU-jr-GJK" kind="show" id="wCk-ui-Ezz"/>
+                                    <segue destination="HbU-jr-GJK" kind="show" identifier="viewFeedback" id="wCk-ui-Ezz"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total de Pontos:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Apr-d0-MRo">
@@ -98,13 +98,25 @@
                     <view key="view" contentMode="scaleToFill" id="fgs-QM-iJC" customClass="ARSCNView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-gm-i5i">
+                                <rect key="frame" x="39" y="223" width="306" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="BTX-s3-gF8"/>
                     </view>
+                    <connections>
+                        <outlet property="myLabelFeedback" destination="vVH-gm-i5i" id="vBN-vY-u5e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3T-UH-Ysx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="134"/>
+            <point key="canvasLocation" x="960.79999999999995" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

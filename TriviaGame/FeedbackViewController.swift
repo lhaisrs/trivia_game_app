@@ -12,4 +12,16 @@ import UIKit
 
 class FeedbackViewController: UIViewController {
     
+    var myLabel: String = ""
+    
+    @IBOutlet weak var myLabelFeedback: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        myLabelFeedback.text = myLabel
+    }
+    
+    
 }

@@ -31,6 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //Label de Feedback
     //@IBOutlet weak var myFeedback: UILabel!
     
+    //Retorno do resultado
+    var Feedback: String = "";
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,9 +77,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return true;
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var View = segue.destination as! FeedbackViewController
+        View.myLabel = Feedback;
+    }
     
     //Enviar respostas
     @IBAction func EnviarResposta(_ sender: UIButton) {
+        
+        tentativas = tentativas - 1;
         
         if(tentativas > 0){
             let alertControllerSucess = UIAlertController(title: "Acertou!", message: "Parabéns cara, você é fera!", preferredStyle: UIAlertControllerStyle.alert);
@@ -102,7 +111,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 pontos = pontos - 1;
             }
             
-            tentativas = tentativas - 1;
             myPontos.text = String (pontos);
             
             
@@ -118,17 +126,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         } else {
             
-            //Mostrando o Feedback
-            //            myFeedback.isHidden = false;
-            //
-            //
-            //            if(pontos > 4) {
-            //                myFeedback.text = "Você ganhou! Parabéns Cara! Você é fera.";
-            //            } else {
-            //                myFeedback.text = "Você perdeu Você é muito burro cara!";
-            //            }
+            //Preparando o Feedback
+            
+            if(pontos > 4) {
+                Feedback = "Você ganhou! Parabéns Cara! Você é fera.";
+            } else {
+                Feedback = "Você perdeu Você é muito burro cara!";
+            }
             
             //Realizando a navegação
+            performSegue(withIdentifier: "viewFeedback", sender: self)
             
             
         }
